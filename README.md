@@ -86,7 +86,7 @@ If the form is being edited by a user the contact will be locked in real-time fo
 
 #### Deleting a Contact
 
-If you click the delete button you will get a confirmation prompt and the contact will be deleted in real-time for all users.
+If you click the delete button you will get a confirmation prompt and the contact will be deleted for all users.
 
 ![Alt text](assets/images/image5.png)
 
