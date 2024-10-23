@@ -50,11 +50,9 @@ then open your browser and navigate to `http://localhost:4200` and you should se
 
 You can login with either of the following hardcoded users:
 
-```json
-[
-    { username: 'user1', password: 'user1' },
-    { username: 'user2', password: 'user2' },
-];
+```
+username: 'user1', password: 'user1'
+username: 'user2', password: 'user2'
 ```
 
 #### Backend
@@ -89,6 +87,7 @@ If the form is being edited by a user the contact will be locked in real-time fo
 #### Deleting a Contact
 
 If you click the delete button you will get a confirmation prompt and the contact will be deleted in real-time for all users.
+
 ![Alt text](assets/images/image5.png)
 
 #### Filtering the Contacts
