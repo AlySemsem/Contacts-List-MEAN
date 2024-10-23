@@ -67,7 +67,11 @@ then open your browser and navigate to `http://localhost:3000` and if everything
 
 ## Screenshots
 
-#### Contacts Information in a Grid
+#### Login Page
+
+![Alt text](assets/images/image7.png)
+
+#### Contacts' Information in a Grid
 
 ![Alt text](assets/images/image.png)
 
