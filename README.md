@@ -1,6 +1,6 @@
 # Contacts List
 
-This is a simple MEAN project that saves contacts in a table and allows creating, updating, deleting and filtering contacts in the table. Websockets is implemented to prevent multiple users from editing contacts at the same time. **Please make sure to check the disclaimer at the end of the README file.**
+This is a simple MEAN stack project that saves contacts in a table and allows creating, updating, deleting and filtering contacts in the table. Websockets is implemented to prevent multiple users from editing contacts at the same time. **Please make sure to check the disclaimer at the end of the README file.**
 
 ## Table of Contents
 
