@@ -1,0 +1,84 @@
+<h1>Contacts Table</h1>
+
+<div class="">
+  <div class="filters">
+    <label>Name: <input [(ngModel)]="filterName" (input)="filterContacts()" placeholder="Filter by name"></label>
+    <label>Phone: <input [(ngModel)]="filterPhone" (input)="filterContacts()" placeholder="Filter by phone"></label>
+    <label>Address: <input [(ngModel)]="filterAddress" (input)="filterContacts()"
+        placeholder="Filter by address"></label>
+    <label>Notes: <input [(ngModel)]="filterNotes" (input)="filterContacts()" placeholder="Filter by notes"></label>
+  </div>
+  <table class="contacts-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Notes</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of filteredContacts">
+        <td *ngIf="editContactId !== contact._id">{{ contact.name }}</td>
+        <td *ngIf="editContactId === contact._id">
+          <input type="text" [(ngModel)]="newContact.name" placeholder="Name" required>
+        </td>
+        <td *ngIf="editContactId !== contact._id">{{ contact.phone }}</td>
+        <td *ngIf="editContactId === contact._id">
+          <input type="text" [(ngModel)]="newContact.phone" placeholder="Phone" required>
+        </td>
+        <td *ngIf="editContactId !== contact._id">{{ contact.address }}</td>
+        <td *ngIf="editContactId === contact._id">
+          <input type="text" [(ngModel)]="newContact.address" placeholder="Address" required>
+        </td>
+        <td *ngIf="editContactId !== contact._id">{{ contact.notes }}</td>
+        <td *ngIf="editContactId === contact._id">
+          <input type="text" [(ngModel)]="newContact.notes" placeholder="Notes" required>
+        </td>
+        <td>
+          <span *ngIf="contact.locked" class="locked">Locked</span>
+          <span *ngIf="!contact.locked">Available</span>
+        </td>
+
+        <td>
+          <button *ngIf="editContactId !== contact._id" (click)="editContact(contact)"
+            (click)="lockContact(contact._id)" [disabled]="contact.locked"
+            (click)="startEditingContact(contact._id)">Edit</button>
+          <button *ngIf="editContactId === contact._id" (click)="updateContact()"
+            (click)="unlockContact(contact._id)">Update</button>
+          <button (click)="deleteContact(contact._id)" [disabled]="contact.locked">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="showInlineForm">
+        <td>
+          <input type="text" [(ngModel)]="newContact.name" placeholder="Name" required>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newContact.phone" placeholder="Phone" required>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newContact.address" placeholder="Address" required>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newContact.notes" placeholder="Notes" required>
+        </td>
+        <td>
+          <button (click)="addContact()">Add</button>
+          <button (click)="resetNewContact()">Cancel</button>
+        </td>
+    </tbody>
+  </table>
+  <div class="table-footer">
+    <div class="create-contact-div">
+      <button class="create-contact-button" (click)="showInlineForm = true">Create New Contact</button>
+    </div>
+
+    <div class="pagination-controls" *ngIf="totalContacts > 0">
+      <button (click)="onPageChange(page - 1)" [disabled]="page === 1">Previous</button>
+      <span>Page {{ page }} of {{ Math.ceil(totalContacts / pageSize) }}</span>
+      <button (click)="onPageChange(page + 1)" [disabled]="(page * pageSize) >= totalContacts">Next</button>
+    </div>
+  </div>
+</div>
