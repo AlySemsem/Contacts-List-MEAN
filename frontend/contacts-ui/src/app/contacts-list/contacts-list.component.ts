@@ -53,6 +53,7 @@ export class ContactsListComponent {
       if (index !== -1) {
         this.contacts[index].locked = false;
       }
+      this.loadContacts();
     });
 
     this.socket.on('contactUpdated', (updatedContact: any) => {
@@ -68,15 +69,11 @@ export class ContactsListComponent {
   }
 
   lockContact(contactId: string): void {
-    this.contactsService.lockContact(contactId).subscribe(() => {
-      console.log('locked');
-    });
+    this.contactsService.lockContact(contactId).subscribe(() => {});
   }
 
   unlockContact(contactId: string): void {
-    this.contactsService.unlockContact(contactId).subscribe(() => {
-      console.log('unlocked');
-    });
+    this.contactsService.unlockContact(contactId).subscribe(() => {});
   }
 
   startEditingContact(contactId: string) {
@@ -97,26 +94,22 @@ export class ContactsListComponent {
   }
 
   loadContacts(): void {
+    console.log(this.filterName);
+
     this.contactsService
-      .getContacts(this.page, this.pageSize)
+      .getContacts(this.page, this.pageSize, {
+        name: this.filterName,
+        address: this.filterAddress,
+        phone: this.filterPhone,
+        notes: this.filterNotes,
+      })
       .subscribe((response: any) => {
+        console.log(response);
+
         this.contacts = response.contacts;
         this.totalContacts = response.total;
         this.filteredContacts = [...this.contacts];
       });
-  }
-
-  filterContacts(): void {
-    this.filteredContacts = this.contacts.filter((contact) => {
-      return (
-        contact.name.toLowerCase().includes(this.filterName.toLowerCase()) &&
-        contact.address
-          .toLowerCase()
-          .includes(this.filterAddress.toLowerCase()) &&
-        contact.phone.includes(this.filterPhone) &&
-        contact.notes.toLowerCase().includes(this.filterNotes.toLowerCase())
-      );
-    });
   }
 
   deleteContact(contactId: string): void {

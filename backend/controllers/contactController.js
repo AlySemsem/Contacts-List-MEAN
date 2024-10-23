@@ -15,9 +15,26 @@ class ContactController {
   //^ Get All Contacts Controller
   async getAllContacts(req, res) {
     try {
+      const { name, address, phone, notes } = req.query;
+      const filter = {};
+
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 10;
-      const contacts = await ContactService.getAllContacts(page, limit);
+
+      if (name) {
+        filter.name = { $regex: name, $options: "i" };
+      }
+      if (address) {
+        filter.address = { $regex: address, $options: "i" };
+      }
+      if (phone) {
+        filter.phone = { $regex: phone, $options: "i" };
+      }
+      if (notes) {
+        filter.notes = { $regex: notes, $options: "i" };
+      }
+
+      const contacts = await ContactService.getAllContacts(page, limit, filter);
       res.status(200).json(contacts);
     } catch (error) {
       res.status(500).json({ error: error.message });

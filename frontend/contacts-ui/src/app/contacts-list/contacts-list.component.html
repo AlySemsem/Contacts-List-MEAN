@@ -2,11 +2,10 @@
 
 <div class="">
   <div class="filters">
-    <label>Name: <input [(ngModel)]="filterName" (input)="filterContacts()" placeholder="Filter by name"></label>
-    <label>Phone: <input [(ngModel)]="filterPhone" (input)="filterContacts()" placeholder="Filter by phone"></label>
-    <label>Address: <input [(ngModel)]="filterAddress" (input)="filterContacts()"
-        placeholder="Filter by address"></label>
-    <label>Notes: <input [(ngModel)]="filterNotes" (input)="filterContacts()" placeholder="Filter by notes"></label>
+    <label>Name: <input [(ngModel)]="filterName" (input)="loadContacts()" placeholder="Filter by name"></label>
+    <label>Phone: <input [(ngModel)]="filterPhone" (input)="loadContacts()" placeholder="Filter by phone"></label>
+    <label>Address: <input [(ngModel)]="filterAddress" (input)="loadContacts()" placeholder="Filter by address"></label>
+    <label>Notes: <input [(ngModel)]="filterNotes" (input)="loadContacts()" placeholder="Filter by notes"></label>
   </div>
   <table class="contacts-table">
     <thead>

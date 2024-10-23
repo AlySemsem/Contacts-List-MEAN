@@ -12,8 +12,24 @@ export class ContactsService {
 
   private url = 'http://localhost:3000/api/contacts';
 
-  getContacts(page: number, limit: number): Observable<any> {
-    const params = new HttpParams().set('page', page).set('limit', limit);
+  getContacts(
+    page: number,
+    limit: number,
+    filter?: { name?: string; address?: string; phone?: string; notes?: string }
+  ): Observable<any> {
+    let params = new HttpParams().set('page', page).set('limit', limit);
+    if (filter?.name) {
+      params = params.set('name', filter.name);
+    }
+    if (filter?.address) {
+      params = params.set('address', filter.address);
+    }
+    if (filter?.phone) {
+      params = params.set('phone', filter.phone);
+    }
+    if (filter?.notes) {
+      params = params.set('notes', filter.notes);
+    }
 
     return this.http.get(this.url, { params });
   }

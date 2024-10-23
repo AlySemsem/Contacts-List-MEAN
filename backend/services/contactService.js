@@ -8,10 +8,10 @@ class ContactService {
   }
 
   //^ Get Contacts
-  async getAllContacts(page, limit) {
+  async getAllContacts(page, limit, filter) {
     const skip = (page - 1) * limit;
     const total = await Contact.countDocuments();
-    const contacts = await Contact.find({}).skip(skip).limit(limit);
+    const contacts = await Contact.find(filter).skip(skip).limit(limit);
     return {
       contacts,
       total,
